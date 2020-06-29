@@ -1,4 +1,10 @@
 
+// ```
+// AS A traveler
+// I WANT to see the weather outlook for multiple cities
+// SO THAT I can plan a trip accordingly
+// ```
+
 // WHEN I view the UV index
 // THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
 // WHEN I view future weather conditions for that city
