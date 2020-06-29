@@ -8,12 +8,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans+TC&family=Playfair+Display:wght@600&family=Prata&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Comfortaa:wght@500&family=Notable&display=swap" rel="stylesheet">
+
+
 
 </head>
 
 <body>
-    <div class="jumbotron">
-        <h1 class="display-4">Weather</h1>
+    <div class="jumbotron" id='cust-jumbotron'>
+        <h1 class="display-4" id='title'>Weather Dashboard</h1>
     </div>
     <div class="container-fluid">
 
@@ -21,11 +25,11 @@
             <!-- ********************* SEARCH BAR ********************* -->
             <div class="card col-md-3 city-list" id="searchSidebar">
                 <div class="card-header">
-                    <h3>Search for a City</h3>
+                    <h3 id='searchTitle'>Search for a City</h3>
                 </div>
 
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" id="search" placeholder="Search"
+                    <input class="form-control mr-sm-2 customInput" type="search" id="search" placeholder="Search"
                         aria-label="Search">
                     <button class="btn btn-outline-primary my-2 my-sm-0" id="searchBtn" type="submit">Search</button>
                 </form>
@@ -90,7 +94,7 @@
     <!-- Moment JS  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>  
 
-
+    <script src="https://use.fontawesome.com/66babb398d.js"></script>
     <script src="script.js"></script>
 
 

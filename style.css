@@ -1,10 +1,143 @@
+/* E63946 - Imperial Red 
+F1FAEE - Honeydew 
+A8DADC - Powder Blue 
+457B9D - Celadon Blue 
+1D3557 - Prussian Blue  
+
+font-family: 'Montserrat', sans-serif;
+font-family: 'Noto Sans TC', sans-serif;
+font-family: 'Playfair Display', serif;
+font-family: 'Prata', serif;
+font-family: 'Abril Fatface', cursive;
+font-family: 'Bebas Neue', cursive;
+font-family: 'Comfortaa', cursive;
+font-family: 'Notable', sans-serif;
+
+*/
+
+body {
+    background-color: #F1FAEE;
+    color: #1A1A1A;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+#cust-jumbotron{
+    padding: 16px 24px;
+    margin-bottom: 16px;
+    background-color: #457B9D;
+    color:#F1FAEE;
+    font-family: 'Abril Fatface', cursive;
+}
+
+#title{
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 4vw;
+}
+
 #searchSidebar{
     padding-left: 0px;
     padding-right: 0px;
     margin-left: 15px;
+}
 
+.customInput {
+    font-size: 14px;
+}
+
+#searchTitle{
+    font-size: 1.5vw;
+}
+
+#search{
+    margin:10px 0 10px 5px;
+}
+
+#cityTitle{
+    font-size: 20px;
+    margin-bottom: 0px;
 }
 
 #cityDetailBar{
     margin-left: 30px;
 }
+.city-details{
+    margin-bottom: 20px;
+}
+
+.city-details p {
+    margin-bottom:8px;
+}
+img{
+    width:50px;
+}
+
+h3{
+    font-size: 20px;
+    margin:0;
+}
+
+.cardDate{
+    font-size: 20px;
+}
+
+#fiveDayForecast{
+    justify-content: space-between;
+    margin: 10px 0;
+    
+}
+
+
+#fiveDayForecast .card {
+    width: 150px;
+}
+
+#fiveDayForecast li {
+    color: #F1FAEE;
+    background-color: #1D3557;
+    font-size: .9em;
+}
+
+
+@media only screen and (max-width: 400px) {
+    body {
+      background-color: #A8DADC;
+    }
+    
+    #cust-jumbotron{
+        padding: 16px 16px;
+        font-size: 8vw;
+        margin-bottom: 16px;
+    }
+
+    .display-4 {
+        font-size: 10vw;
+    }
+
+
+    #searchTitle{
+        font-size: 16px;
+        margin: 0 auto;
+        width: 90%;
+    }
+    #searchSidebar{
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 15px;
+        width:90%;
+    }
+
+    #searchBtn{
+        margin-left: 10px;
+    }
+
+    .city-details{
+        margin:15px 15px;
+        font-size: 16px;
+        margin-bottom: 0px;
+        }
+
+    #cityTitle{
+        font-size: 20px;
+    }
+  }
