@@ -23,28 +23,26 @@ function setupArray() {
     searchHistory = localStorage.getItem('searchHistory');
     searchHistory = JSON.parse(searchHistory);
 
-    if (searchHistory === null) {
-        searchHistory = [];
+    if (searchHistory.length === 0) {
         getLatLong('Austin');
     } else {
         renderCities();
     }
-
 }
 
 function renderCities() {
     $('#cities').empty();
     for (let i = 0; i < searchHistory.length; i++) {
         var newCity = $('<li>');
-        newCity.text(searchHistory[i]);
+        var cityBtn = $('<button>');  
+        cityBtn.text(searchHistory[i]);
         newCity.attr('class', 'list-group-item');
-        newCity.attr('data-city', searchHistory[i]);
-
+        cityBtn.attr('class', 'btn customBtn');
+        cityBtn.attr('id', searchHistory[i]);
         var removeIcon = $('<button>').attr('class', 'btn fa fa-times-circle');
-        removeIcon.attr('id', 'removeIcon');
-        removeIcon.attr('data-cityIndex', i);
+        removeIcon.attr('id', i);
+        newCity.append(cityBtn);
         newCity.append(removeIcon);
-
         $('#cities').append(newCity);
     }
     getLatLong(searchHistory[searchHistory.length - 1]);
@@ -61,20 +59,20 @@ setupArray();
 // *********** SEARCH BAR ************
 $('#searchBtn').on('click', function (event) {
     event.preventDefault();
-
     var cityName = $('#search').val();
 
-    //check to see if the city is in the list
-    if (!searchHistory.includes(newCity)) {
+    if (!searchHistory.includes(cityName)) {
         searchHistory.push(cityName);
         localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
         var newCity = $('<li>');
-        newCity.text(cityName);
+        var cityBtn = $('<button>');
+        cityBtn.text(cityName);
         newCity.attr('class', 'list-group-item');
-        newCity.attr('data-city', cityName)
+        cityBtn.attr('class', 'btn customBtn');
+        cityBtn.attr('id', cityName)
         var removeIcon = $('<button>').attr('class', 'btn fa fa-times-circle');
-        removeIcon.attr('id', 'removeIcon');
-        removeIcon.attr('data-cityIndex', searchHistory.length - 1);
+        removeIcon.attr('id', searchHistory.length - 1);
+        newCity.append(cityBtn);
         newCity.append(removeIcon);
         $('#cities').append(newCity);
     }
@@ -118,10 +116,22 @@ function getLatLong(city) {
             url: queryURL,
             method: 'GET'
         }).then(function (response) {
-            //console.log(response);
-            var uvIndex = response.current.uvi;
 
-            $('#UV-index').text(`UV Index: ${uvIndex}%`);
+            var uvIndex = response.current.uvi;
+            var uvBtn = $('<button>');
+            $('#UV-index').text('UV Index: ');
+            uvBtn.text(uvIndex);
+            if(uvIndex <= 2) {
+                uvBtn.attr('class', 'btn btn-success');
+            } else if (uvIndex > 2 && uvIndex <= 5) {
+                uvBtn.attr('class', 'btn btn-warning');
+            } else if (uvIndex > 5 && uvIndex <= 7) {
+                uvBtn.attr('class', 'btn btn-orange');
+            } else {
+                uvBtn.attr('class', 'btn btn-danger');
+            }
+
+            $('#UV-index').append(uvBtn);
 
             // $('#fiveDayForecast').empty();
 
@@ -153,15 +163,31 @@ function getLatLong(city) {
     });
 }
 
-//working on this...
-$('#searchSidebar').on('click', function () {
-    
-        console.log($(event.target));
-    // console.log($(this).attr('id'));
-    // let removeIndex = $(this).attr('data-cityIndex');
-    // searchHistory.splice(removeIndex, 1);
-    // renderCities();
+$('#searchSidebar').on('click', function (event) {
+    event.preventDefault();
+    let removeIndex = parseInt($(event.target)[0].id);
+    console.log(removeIndex);
+    if (removeIndex > -1) {
+        searchHistory.splice(removeIndex, 1);
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
+        if (searchHistory.length === 0) {
+            $('#cities').empty();
+            getLatLong('Austin');
+        } else {
+            renderCities();
+        }
+    }
+});
+
+$('#searchSidebar').on('click', function (event) {
+    event.preventDefault();
+    let city = $(event.target)[0].id;
+    
+    if(searchHistory.includes(city)) {
+        getLatLong(city);
+    }
+    
 });
 
 

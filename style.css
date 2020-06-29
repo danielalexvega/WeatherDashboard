@@ -81,6 +81,11 @@ h3{
     font-size: 20px;
 }
 
+.btn-orange{
+    background-color:#F2542D;
+    color:white;
+}
+
 #fiveDayForecast{
     justify-content: space-between;
     margin: 10px 0;
