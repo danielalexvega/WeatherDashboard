@@ -23,7 +23,7 @@ function setupArray() {
     searchHistory = localStorage.getItem('searchHistory');
     searchHistory = JSON.parse(searchHistory);
 
-    if (searchHistory.length === 0) {
+    if (searchHistory === null || searchHistory.length === 0) {
         getLatLong('Austin');
     } else {
         renderCities();
