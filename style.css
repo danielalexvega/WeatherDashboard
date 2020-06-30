@@ -103,12 +103,41 @@ h3{
     font-size: .9em;
 }
 
+@media only screen and (max-width: 1038px){
+    #search{
+        margin:10px auto;
+    }
+
+} 
+
+
+
+@media only screen and (max-width: 768px) {
+    #search{
+        width: 170px;
+        margin: 0px auto;
+        margin-bottom: 5px;
+    }
+
+    #searchBtn{
+        margin:0 auto;
+    }
+
+    #searchTitle{
+        font-size: 16px;
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    #fiveDayForecast{
+        /* justify-content: space-evenly; */
+        flex-direction: column;
+        
+    }
+}
 
 @media only screen and (max-width: 400px) {
-    body {
-      background-color: #A8DADC;
-    }
-    
+   
     #cust-jumbotron{
         padding: 16px 16px;
         font-size: 8vw;
