@@ -8,6 +8,7 @@ function setupArray() {
 
     if (searchHistory === null || searchHistory.length === 0) {
         getLatLong('Austin');
+        searchHistory = [];
     } else {
         renderCities();
     }
@@ -42,7 +43,9 @@ setupArray();
 // *********** SEARCH BAR ************
 $('#searchBtn').on('click', function (event) {
     event.preventDefault();
+    if(searchHistory === null) searchHistory = [];
     var cityName = $('#search').val();
+    
 
     if (!searchHistory.includes(cityName)) {
         searchHistory.push(cityName);
@@ -182,7 +185,7 @@ $(window).resize(function() {
 $('#searchSidebar').on('click', function (event) {
     event.preventDefault();
     let removeIndex = parseInt($(event.target)[0].id);
-    console.log(removeIndex);
+
     if (removeIndex > -1) {
         searchHistory.splice(removeIndex, 1);
         localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
