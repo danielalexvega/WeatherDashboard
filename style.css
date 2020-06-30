@@ -134,6 +134,11 @@ h3{
         flex-direction: column;
         
     }
+
+    #fiveDayForecast .card {
+        margin-bottom: 10px;
+        width: 500px;
+    }
 }
 
 @media only screen and (max-width: 400px) {
@@ -173,5 +178,9 @@ h3{
 
     #cityTitle{
         font-size: 20px;
+    }
+
+    #fiveDayForecast .card{
+        width: 300px;
     }
   }

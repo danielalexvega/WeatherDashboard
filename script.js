@@ -34,7 +34,7 @@ function renderCities() {
     $('#cities').empty();
     for (let i = 0; i < searchHistory.length; i++) {
         var newCity = $('<li>');
-        var cityBtn = $('<button>');  
+        var cityBtn = $('<button>');
         cityBtn.text(searchHistory[i]);
         newCity.attr('class', 'list-group-item');
         cityBtn.attr('class', 'btn customBtn');
@@ -121,7 +121,7 @@ function getLatLong(city) {
             var uvBtn = $('<button>');
             $('#UV-index').text('UV Index: ');
             uvBtn.text(uvIndex);
-            if(uvIndex <= 2) {
+            if (uvIndex <= 2) {
                 uvBtn.attr('class', 'btn btn-success');
             } else if (uvIndex > 2 && uvIndex <= 5) {
                 uvBtn.attr('class', 'btn btn-warning');
@@ -134,34 +134,67 @@ function getLatLong(city) {
             $('#UV-index').append(uvBtn);
 
             // $('#fiveDayForecast').empty();
+            if (window.innerWidth > 1195) {
+                for (let i = 1; i < 6; i++) {
+                    let card = $('<div>').attr('class', 'card');
+                    let ul = $('<ul>').attr('class', 'list-group list-group-flush');
+                    let dateLi = $('<li>').attr('class', 'list-group-item cardDate');
+                    dateLi.text((moment(response.daily[i].dt, "X").format('MM/DD/YY')));
 
-            for (let i = 1; i < 6; i++) {
-                let card = $('<div>').attr('class', 'card');
-                //card.attr('style', 'width: 14vw');
-                let ul = $('<ul>').attr('class', 'list-group list-group-flush');
-                //ul.attr('class', 'foreCastUl');
-                let dateLi = $('<li>').attr('class', 'list-group-item cardDate');
-                dateLi.text((moment(response.daily[i].dt, "X").format('MM/DD/YY')));
-                //icon
-                let icon = response.daily[i].weather[0].icon;
-                let iconpic = `http://openweathermap.org/img/wn/${icon}@2x.png`;
-                let img = $('<img>').attr('src', iconpic);
-                let iconLi = $('<li>').attr('class', 'list-group-item');
+                    let icon = response.daily[i].weather[0].icon;
+                    let iconpic = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+                    let img = $('<img>').attr('src', iconpic);
+                    let iconLi = $('<li>').attr('class', 'list-group-item');
 
-                let tempLi = $('<li>').attr('class', 'list-group-item');
-                tempLi.text(`Temp: ${response.daily[i].temp.day} \u00B0F`);
+                    let tempLi = $('<li>').attr('class', 'list-group-item');
+                    tempLi.text(`Temp: ${response.daily[i].temp.day} \u00B0F`);
 
-                let humidLi = $('<li>').attr('class', 'list-group-item');
-                humidLi.text(`Humidity: ${response.daily[i].humidity}%`);
+                    let humidLi = $('<li>').attr('class', 'list-group-item');
+                    humidLi.text(`Humidity: ${response.daily[i].humidity}%`);
 
-                iconLi.append(img);
-                ul.append(dateLi, iconLi, tempLi, humidLi);
-                card.append(ul);
-                $('#fiveDayForecast').append(card);
+                    iconLi.append(img);
+                    ul.append(dateLi, iconLi, tempLi, humidLi);
+                    card.append(ul);
+                    $('#fiveDayForecast').append(card);
+
+                }
+            } else {
+                for(let i = 1; i < 6; i++) {
+                    let card = $('<div>').attr('class', 'card');
+                    let cardRow = $('<div>').attr('class', 'row no-gutters');
+                    let firstCol = $('<div>').attr('class', 'col-sm-6');
+                    let dateDiv = $('<div>').attr('class', 'card-body');
+                    dateDiv.text((moment(response.daily[i].dt, "X").format('MM/DD/YY')));
+                    let icon = response.daily[i].weather[0].icon;
+                    let iconpic = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+                    let img =  $('<img>').attr('src', iconpic);
+                    let iconDiv = $('<div>').attr('class', 'card-text');
+                    iconDiv.append(img);
+                    dateDiv.append(iconDiv);
+                    firstCol.append(dateDiv);
+
+                    let secondCol = $('<div>').attr('class', 'col-sm-6');
+                    let tempDiv = $('<div>').attr('class', 'card-body');
+                    tempDiv.text(`Temp: ${response.daily[i].temp.day} \u00B0F`);
+                    let humidDiv = $('<div>').attr('class', 'card-text');
+                    humidDiv.text(`Humidity: ${response.daily[i].humidity}%`)
+                    tempDiv.append(humidDiv);
+                    secondCol.append(tempDiv);
+                    cardRow.append(firstCol);
+                    cardRow.append(secondCol);
+                    card.append(cardRow);
+                    $('#fiveDayForecast').append(card);
+
+                }
+
             }
         });
     });
 }
+
+$(window).resize(function() {
+    getLatLong(searchHistory[searchHistory.length - 1 ]);
+});
 
 $('#searchSidebar').on('click', function (event) {
     event.preventDefault();
@@ -183,11 +216,11 @@ $('#searchSidebar').on('click', function (event) {
 $('#searchSidebar').on('click', function (event) {
     event.preventDefault();
     let city = $(event.target)[0].id;
-    
-    if(searchHistory.includes(city)) {
+
+    if (searchHistory.includes(city)) {
         getLatLong(city);
     }
-    
+
 });
 
 
