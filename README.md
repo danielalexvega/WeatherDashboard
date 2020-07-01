@@ -9,7 +9,7 @@ When you search for a city, it displays the date, the temperature, the humidity,
 
 For example, Auckland has a low UV Index, so it's displayed in green. 
 
-![](AucklandGoodUVIndex.JPG)
+![](AucklandGoodUVIndexSmall.JPG)
 
 Where Lison has a higher level of UV Index, so it's displayed in red.
 
