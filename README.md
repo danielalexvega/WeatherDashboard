@@ -13,4 +13,4 @@ For example, Auckland has a low UV Index, so it's displayed in green.
 
 Where Lison has a higher level of UV Index, so it's displayed in red.
 
-![](PragueHighUVIndex.JPG)
+![](PragueHighUVIndexSmall.JPG)
