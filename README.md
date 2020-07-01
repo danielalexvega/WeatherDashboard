@@ -4,3 +4,7 @@ I created a Weather Dashboard with JavaScript, JQuery, CSS and HTML. The site au
 There are some issues when resizing the window that I will try to make more fluid. 
 
 View the website here: https://danielalexvega.github.io/WeatherDashboard/
+
+When you search for a city, it displays the date, the temperature, the humidity, windspeed, and the UV Index, which changes colors based on the level. 
+
+For example, 
