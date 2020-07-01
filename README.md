@@ -8,4 +8,9 @@ View the website here: https://danielalexvega.github.io/WeatherDashboard/
 When you search for a city, it displays the date, the temperature, the humidity, windspeed, and the UV Index, which changes colors based on the level. 
 
 For example, Auckland has a low UV Index, so it's displayed in green. 
+
 ![](AucklandGoodUVIndex.JPG)
+
+Where Lison has a higher level of UV Index, so it's displayed in red.
+
+![](PragueHighUVIndex.JPG)
